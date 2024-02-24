@@ -1,7 +1,21 @@
-var counts = {};
+var data = {};
+var actions = [];
+var redos = [];
 
 const onSection = (id) => {
   document.body.setAttribute("data-section", id);
+}
+
+const swapColor = () => {
+  var color = document.getElementById("match_color").innerText;
+  document.getElementById("match_color").innerText = color.length > 15 ? "Team Color: Red" : "Team Color: Blue"
+}
+
+const start = () => {
+  data['color'] = document.getElementById("match_color").innerText.split(" ")[1];
+  data['match #'] = document.getElementById("match_number").value;
+  data['team #'] = document.getElementById("team_number").value;
+  data['match'] = document.querySelector('input[name="match"]:checked').value;
 }
 
 const setup = () => {

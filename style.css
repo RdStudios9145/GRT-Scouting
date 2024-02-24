@@ -2,6 +2,14 @@ div.section {
   display: none;
 }
 
+body[data-section="-1"] > #startup {
+  display: block;
+}
+
+body[data-section="-1"] > #constant {
+  display: none;
+}
+
 body[data-section="0"] > #auton {
   display: block;
 }
