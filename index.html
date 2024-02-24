@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GRT Scouting</title>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body data-section="0">
+    <div id="section">
+      <button id="auton" onclick="onSection(0)">Auton</button>
+      <button id="teleop" onclick="onSection(1)">Teleop</button>
+      <!--<button id="endgame" onclick="onSection(2)">Endgame</button>-->
+    </div>
+
+    <div class="section" id="auton">
+      <h2>Intake</h2>
+      <button id="intake_wing" onclick="onSection(3)">WING</button>
+      <button id="intake_center" onclick="onSection(3)">CENTER</button>
+    </div>
+
+    <div class="section" id="teleop">
+    </div>
+
+    <div class="section" id="endgame">
+    </div>
+
+    <div class="section" id="auton_deposit">
+      <h2>Deposit</h2>
+      <input type="radio" id="amp_ad" name="adeposit" value="amp">
+      <label for="amp_ad">AMP</label>
+      <input type="radio" id="speaker_ad" name="adeposit" value="speaker">
+      <label for="speaker_ad">SPEAKER</label>
+      <input type="radio" id="make_ad" name="amake" value="make">
+      <label for="make_ad">MAKE</label>
+      <input type="radio" id="miss_ad" name="amake" value="miss">
+      <label for="miss_ad">MISS</label>
+    </div>
+
+    <div id="constant">
+      <button id="afailure">AUTON FAILURE</button>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

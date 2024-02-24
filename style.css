@@ -1,0 +1,30 @@
+div.section {
+  display: none;
+}
+
+body[data-section="0"] > #auton {
+  display: block;
+}
+
+body[data-section="1"] > #teleop {
+  display: block;
+}
+
+body[data-section="2"] > #endgame {
+  display: block;
+}
+
+body[data-section="3"] > #auton_deposit {
+  display: block;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
