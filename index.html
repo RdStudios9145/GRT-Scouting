@@ -14,20 +14,23 @@
     </div>
 
     <div class="section" id="startup">
-      <button id="match_color" onclick="swapColor()">Team Color: RED</button>
+      <button id="match_color" onclick="swapColor()">Team Color: Red</button>
       <input type="number" id="match_number" placeholder="Match #">
-      <input type="number" id="team_number" placeholder="Team #">
+  <input type="number" id="team_number" placeholder="Team #">
       <input type="radio" id="practice_match" name="match" value="practice">
       <label for="practice_match">Practice</label>
       <input type="radio" id="qual_match" name="match" value="qual">
       <label for="qual_match">Qualifier</label>
+      <input type="radio" id="playoff_match" name="match" value="playoff">
+      <label for="playoff_match">Playoff</label>
       <button id="start" onclick="start()">Start</button>
     </div>
 
     <div class="section" id="auton">
       <h2>Intake</h2>
-      <button id="intake_wing" onclick="onSection(3)">WING</button>
-      <button id="intake_center" onclick="onSection(3)">CENTER</button>
+      <button id="intake_wing" onclick="action()">WING</button>
+      <button id="intake_center" onclick="action()">CENTER</button>
+      <button id="intake_center" onclick="action()">PRELOAD</button>
     </div>
 
     <div class="section" id="teleop">
@@ -49,7 +52,8 @@
     </div>
 
     <div id="constant">
-      <button id="afailure">AUTON FAILURE</button>
+      <button id="undo" onclick="undo()">Undo</button>
+      <button id="redo" onclick="redo()">Redo</button>
     </div>
 
     <script src="index.js"></script>

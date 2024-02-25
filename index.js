@@ -12,10 +12,19 @@ const swapColor = () => {
 }
 
 const start = () => {
-  data['color'] = document.getElementById("match_color").innerText.split(" ")[1];
+  data['color'] = document.getElementById("match_color").innerText.split(" ")[2];
   data['match #'] = document.getElementById("match_number").value;
   data['team #'] = document.getElementById("team_number").value;
   data['match'] = document.querySelector('input[name="match"]:checked').value;
+
+  data['auton in wing'] = 0;
+  data['auton in center'] = 0;
+  data['auton made amp'] = 0;
+  data['auton missed amp'] = 0;
+  data['auton made speaker'] = 0;
+  data['auton missed speaker'] = 0;
+
+  onSection(0);
 }
 
 const setup = () => {
