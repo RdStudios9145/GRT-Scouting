@@ -28,12 +28,15 @@
 
     <div class="section" id="auton">
       <h2>Intake</h2>
-      <button id="intake_wing" onclick="action()">WING</button>
-      <button id="intake_center" onclick="action()">CENTER</button>
-      <button id="intake_center" onclick="action()">PRELOAD</button>
+      <!--<button id="intake_wing" onclick="Action()">WING</button>
+      <button id="intake_center" onclick="Action()">CENTER</button>
+      <button id="intake_center" onclick="Action()">PRELOAD</button>-->
+      <div id="one_eight_buttons"></div>
     </div>
 
     <div class="section" id="teleop">
+      <button id="ground_intake" onclick="Action(mode.teleop, action.intake, { 'id': 0 })">GROUNG</button>
+      <button id="ground_intake" onclick="Action(mode.teleop, action.intake, { 'id': 1 })">SOURCE</button>
     </div>
 
     <div class="section" id="endgame">
@@ -49,7 +52,40 @@
       <label for="make_ad">MAKE</label>
       <input type="radio" id="miss_ad" name="amake" value="miss">
       <label for="miss_ad">MISS</label>
+      <button id="submit_auton_deposit" onclick="Action(mode.auton, action.shoot, getAutonDepositData())">
+        Record
+      </button>
     </div>
+
+    <div class="section" id="teleop_deposit">
+      <h2>Deposit</h2>
+      <input type="radio" id="amp_td" name="tdeposit" value="amp">
+      <label for="amp_td">AMP</label>
+
+      <input type="radio" id="speaker_td" name="tdeposit" value="speaker">
+      <label for="speaker_td">SPEAKER</label>
+
+      <input type="radio" id="trap_td" name="tdeposit" value="trap">
+      <label for="trap_td">TRAP</label>
+
+      <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle">
+      <label for="shuttle_td">SHUTTLE</label>
+
+
+      <input type="radio" id="make_td" name="tmake" value="make">
+      <label for="make_td">MAKE</label>
+
+      <input type="radio" id="miss_td" name="tmake" value="miss">
+      <label for="miss_td">MISS</label>
+
+      <button id="submit_auton_deposit" onclick="Action(mode.auton, action.shoot, getTeleopDepositData())">
+        Record
+      </button>
+    </div>
+
+    <button class="section" id="proceed" onclick="Action(mode.auton, action.proceed, {})">
+      Proceed to Teleop
+    </button>
 
     <div id="constant">
       <button id="undo" onclick="undo()">Undo</button>

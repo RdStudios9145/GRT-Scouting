@@ -1,4 +1,4 @@
-div.section {
+.section {
   display: none;
 }
 
@@ -10,7 +10,7 @@ body[data-section="-1"] > #constant {
   display: none;
 }
 
-body[data-section="0"] > #auton {
+body[data-section="0"] > #auton, body[data-section="0"] > #proceed {
   display: block;
 }
 
@@ -23,6 +23,10 @@ body[data-section="2"] > #endgame {
 }
 
 body[data-section="3"] > #auton_deposit {
+  display: block;
+}
+
+body[data-section="4"] > #teleop_deposit {
   display: block;
 }
 
