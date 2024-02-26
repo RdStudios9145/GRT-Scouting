@@ -122,3 +122,13 @@ const setup = () => {
 }
 
 setup();
+
+const filter = (e) => {
+  let t = e.target;
+  let badValues = /[^\d]/gi;
+  if (e.key.replace(badValues, "") === "") e.preventDefault();
+}
+
+document.querySelectorAll("input[type=number]").forEach(el => {
+  el.addEventListener('keypress', filter);
+});
