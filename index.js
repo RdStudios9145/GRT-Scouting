@@ -36,6 +36,14 @@ const start = () => {
   data['auton made speaker'] = 0;
   data['auton missed speaker'] = 0;
 
+  data['teleop made amp'] = 0;
+  data['teleop missed amp'] = 0;
+  data['teleop made speaker'] = 0;
+  data['teleop missed speaker'] = 0;
+  data['teleop made trap'] = 0;
+  data['teleop missed trap'] = 0;
+  data['teleop shuttle'] = 0;
+
   onSection(0);
 };
 
@@ -132,3 +140,12 @@ const filter = (e) => {
 document.querySelectorAll("input[type=number]").forEach(el => {
   el.addEventListener('keypress', filter);
 });
+
+document.querySelectorAll("input[name=tdeposit]").forEach(e => {
+  e.addEventListener("click", () => {
+    if (e.id === "shuttle_td") {
+      document.querySelectorAll("input[name=tmake],.tmake").forEach(e1 => e1.style.display = "none");
+    } else 
+      document.querySelectorAll("input[name=tmake],.tmake").forEach(e1 => e1.style.display = "inline");
+  })
+})
