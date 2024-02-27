@@ -51,9 +51,26 @@
       <label for="defense">DEFENSE PRIORITY</label>
 
       <button id="tfail" onclick="Action(mode.teleop, action.failure, { })">FAILURE</button>
+
+      <input type="checkbox" class="harmony" id="harmony" name="harmony">
+      <label for="harmony" class="harmony">HARMONY</label>
+
+      <button id="game_over" onclick="Action(mode.teleop, action.done, getFinalData())">
+        Game Over
+      </button>
     </div>
 
-    <div class="section" id="endgame">
+    <div class="section" id="climb">
+      <h2>Climb Attempt</h2>
+      <input type="radio" id="climb_success" name="climb" value="success">
+      <label for="climb_success">SUCCESS</label>
+
+      <input type="radio" id="climb_fail" name="climb" value="fail">
+      <label for="climb_fail">FAIL</label>
+
+      <button id="climb_submit" onclick="Action(mode.teleop, action.climb, getClimbData())">
+        Record
+      </button>
     </div>
 
     <div class="section" id="auton_deposit">
@@ -100,6 +117,19 @@
       <button id="submit_auton_deposit" onclick="Action(mode.auton, action.shoot, getTeleopDepositData())">
         Record
       </button>
+    </div>
+
+    <div class="section" id="final">
+      <textarea rows="10" cols="20" placeholder="Final Comments"></textarea>
+
+      <div id="final_data"></div>
+
+      <a href="" target="_blank" rel="noopener noreferrer" id="submit"><button onclick="test()">
+        Submit
+      </button></a>
+
+      <input id="submit_data" type="text">
+      <button id="show_data" onclick="copyData()">Copy Data</button>
     </div>
 
     <button class="section" id="proceed" onclick="Action(mode.auton, action.proceed, {})">

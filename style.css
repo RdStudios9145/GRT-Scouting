@@ -18,7 +18,7 @@ body[data-section="1"] > #teleop {
   display: block;
 }
 
-body[data-section="2"] > #endgame {
+body[data-section="2"] > #climb {
   display: block;
 }
 
@@ -30,7 +30,15 @@ body[data-section="4"] > #teleop_deposit {
   display: block;
 }
 
+body[data-section="5"] > #final {
+  display: block;
+}
+
 #redo {
+  display: none;
+}
+
+.harmony {
   display: none;
 }
 

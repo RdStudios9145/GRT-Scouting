@@ -71,6 +71,22 @@ const getTeleopDepositData = () => {
   return { "deposit": deposit, "make": make };
 }
 
+const getClimbData = () => {
+  const success = document.querySelector('input[name="climb"]:checked').value;
+
+  if (success === "success") document.querySelectorAll(".harmony").forEach(e => e.style.display = "inline");
+
+  return { "success": success };
+}
+
+const evaluateActions = () => {}
+
+const finalize = () => {
+  evaluateActions();
+
+  
+}
+
 const Action = (Mode, Action, data) => {
   console.log(Mode, Action, data);
 
@@ -90,6 +106,11 @@ const actionAuton = (Action, data) => {
 const actionTeleop = (Action, data) => {
   switch (Action) {
     // Hi Rishay!
+
+    case action.final:
+      finalize();
+      onSection(5);
+      break;
   }
 }
 
@@ -184,3 +205,8 @@ document.querySelectorAll("input[name=tdeposit]").forEach(e => {
       document.querySelectorAll("input[name=tmake],.tmake").forEach(e1 => e1.style.display = "inline");
   })
 })
+
+const test = () => {
+
+  document.getElementById("submit").href = "https://roblox.com";
+}
