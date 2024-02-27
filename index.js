@@ -11,6 +11,8 @@ const action = {
   "intake": 0,
   "shoot": 1,
   "proceed": 2,
+  "defense_priority": 3,
+  "failure": 4,
 }
 
 const onSection = (id) => {
@@ -35,6 +37,7 @@ const start = () => {
   data['auton missed amp'] = 0;
   data['auton made speaker'] = 0;
   data['auton missed speaker'] = 0;
+  data['auton failure'] = 0;
 
   data['teleop made amp'] = 0;
   data['teleop missed amp'] = 0;
@@ -43,6 +46,13 @@ const start = () => {
   data['teleop made trap'] = 0;
   data['teleop missed trap'] = 0;
   data['teleop shuttle'] = 0;
+  data['teleop failures'] = [];
+  data['teleop defense priority'] = false;
+
+  data['endgame climb attempt'] = [];
+  data['endgame harmony'] = false;
+
+  data['additional notes'] = "";
 
   onSection(0);
 };
@@ -66,6 +76,8 @@ const Action = (Mode, Action, data) => {
 
   if (Mode == mode.auton)  actionAuton(Action, data);
   if (Mode == mode.teleop) actionTeleop(Action, data);
+
+  actions.push([Mode, Action, data]);
 };
 
 const actionAuton = (Action, data) => {
@@ -78,6 +90,18 @@ const actionTeleop = (Action, data) => {
   switch (Action) {
     // Hi Rishay!
   }
+}
+
+const undo = () => {
+  // ...
+
+  if (redos.length != 0) document.getElementById("redo").style.display = "inline";
+}
+
+const redo = () => {
+  // ...
+
+  if (redos.length === 0) document.getElementById("redo").style.display = "none";
 }
 
 const setup = () => {

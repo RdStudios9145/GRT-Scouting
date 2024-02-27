@@ -30,6 +30,10 @@ body[data-section="4"] > #teleop_deposit {
   display: block;
 }
 
+#redo {
+  display: none;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */

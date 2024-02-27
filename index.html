@@ -37,11 +37,20 @@
       <button id="intake_center" onclick="Action()">CENTER</button>
       <button id="intake_center" onclick="Action()">PRELOAD</button>-->
       <div id="one_eight_buttons"></div>
+
+      <button id="preload" onclick="Action(mode.auton, action.intake, { 'id': 'pre' })">preload</button>
+
+      <button id="afail" onclick="Action(mode.auton, action.failure, { })">AUTON FAILURE</button>
     </div>
 
     <div class="section" id="teleop">
       <button id="ground_intake" onclick="Action(mode.teleop, action.intake, { 'id': 0 })">GROUND</button>
       <button id="ground_intake" onclick="Action(mode.teleop, action.intake, { 'id': 1 })">SOURCE</button>
+
+      <input type="checkbox" id="defense" name="defense">
+      <label for="defense">DEFENSE PRIORITY</label>
+
+      <button id="tfail" onclick="Action(mode.teleop, action.failure, { })">FAILURE</button>
     </div>
 
     <div class="section" id="endgame">
