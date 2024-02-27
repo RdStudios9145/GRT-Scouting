@@ -78,6 +78,7 @@ const Action = (Mode, Action, data) => {
   if (Mode == mode.teleop) actionTeleop(Action, data);
 
   actions.push([Mode, Action, data]);
+  redos = [];
 };
 
 const actionAuton = (Action, data) => {
@@ -93,12 +94,22 @@ const actionTeleop = (Action, data) => {
 }
 
 const undo = () => {
+  if (actions.length == 0) return;
+  
+  var action = actions.pop();
+  redos.push(action);
+
   // ...
 
   if (redos.length != 0) document.getElementById("redo").style.display = "inline";
 }
 
 const redo = () => {
+  if (redos.length == 0) return document.getElementById("redo").style.display = "none";
+
+  var action = redos.pop();
+  actions.push(action);
+
   // ...
 
   if (redos.length === 0) document.getElementById("redo").style.display = "none";
