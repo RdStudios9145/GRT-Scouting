@@ -3,132 +3,168 @@ var actions = [];
 var redos = [];
 
 const mode = {
-  "auton": 0,
-  "teleop": 1,
+    "auton": 0,
+    "teleop": 1,
 };
 
 const action = {
-  "intake": 0,
-  "shoot": 1,
-  "proceed": 2,
+    "intake": 0,
+    "shoot": 1,
+    "proceed": 2,
 }
 
 const onSection = (id) => {
-  document.body.setAttribute("data-section", id);
+    document.body.setAttribute("data-section", id);
 }
 
 const swapColor = () => {
-  var color = document.getElementById("match_color").innerText;
+    var color = document.getElementById("match_color").innerText;
 
-  // Cursed. String for the color red is 15 chars long, so if it is longer, its blue. Switch colors
-  document.getElementById("match_color").innerText = color.length > 15 ? "Team Color: Red" : "Team Color: Blue"
+    // Cursed. String for the color red is 15 chars long, so if it is longer, its blue. Switch colors
+    document.getElementById("match_color").innerText = color.length > 15 ? "Team Color: Red" : "Team Color: Blue"
 }
 
 const start = () => {
-  data['color'] = document.getElementById("match_color").innerText.split(" ")[2];
-  data['match #'] = document.getElementById("match_number").value;
-  data['team #'] = document.getElementById("team_number").value;
-  data['match'] = document.querySelector('input[name="match"]:checked').value;
+    data['color'] = document.getElementById("match_color").innerText.split(" ")[2];
+    data['match #'] = document.getElementById("match_number").value;
+    data['team #'] = document.getElementById("team_number").value;
+    data['match'] = document.querySelector('input[name="match"]:checked').value;
 
-  data['auton intake'] = Array(8).fill(0);
-  data['auton made amp'] = 0;
-  data['auton missed amp'] = 0;
-  data['auton made speaker'] = 0;
-  data['auton missed speaker'] = 0;
+    data['auton intake'] = Array(8).fill(0);
+    data['auton made amp'] = 0;
+    data['auton missed amp'] = 0;
+    data['auton made speaker'] = 0;
+    data['auton missed speaker'] = 0;
 
-  onSection(0);
+    onSection(0);
 };
 
 const getAutonDepositData = () => {
-  const deposit = document.querySelector('input[name="adeposit"]:checked').value;
-  const make = document.querySelector('input[name="amake"]:checked').value;
+    const deposit = document.querySelector('input[name="adeposit"]:checked').value;
+    const make = document.querySelector('input[name="amake"]:checked').value;
 
-  return { "deposit": deposit, "make": make };
+    return { "deposit": deposit, "make": make };
 }
 
 const getTeleopDepositData = () => {
-  const deposit = document.querySelector('input[name="tdeposit"]:checked').value;
-  const make = document.querySelector('input[name="tmake"]:checked').value;
+    const deposit = document.querySelector('input[name="tdeposit"]:checked').value;
+    const make = document.querySelector('input[name="tmake"]:checked').value;
 
-  return { "deposit": deposit, "make": make };
+    return { "deposit": deposit, "make": make };
+}
+
+// @Holden this is a class that would represent any game action done, for undoing/redoing
+class Action {
+    constructor(gamemode, type, specifics, success) {
+        this.gamemode = gamemode; // "auton" or "teleop"
+        this.type = type; // "intake" or "deposit"
+        this.specifics = specifics; // Specifics about that action (idk, location maybe?)
+        this.success = success; // "scored" or "missed"
+    }
+
+    // Method to actually undo the action from all relevant tabulations
+    undoAction() {
+        // 
+    }
+
+    // Method to re-add the action into all relevant tabulations
+    redoAction() {
+        // This method should redo whatever the undoAction() method undid
+    }
+}
+
+function undo() {
+    if (actions.length > 0) {
+        let lastAction = actions.pop();
+        lastAction.undoAction();
+        redos.push(lastAction);
+    }
+}
+
+function redo() {
+    if (redos.length > 0) {
+        let lastRedoAction = redos.pop();
+        lastRedoAction.redoAction();
+        actions.push(lastRedoAction);
+    }
 }
 
 const Action = (Mode, Action, data) => {
-  console.log(Mode, Action, data);
+    console.log(Mode, Action, data);
 
-  if (Mode == mode.auton)  actionAuton(Action, data);
-  if (Mode == mode.teleop) actionTeleop(Action, data);
+    if (Mode == mode.auton) actionAuton(Action, data);
+    if (Mode == mode.teleop) actionTeleop(Action, data);
 };
 
 const actionAuton = (Action, data) => {
-  switch (Action) {
-    // Hi Rishay!
-  }
+    switch (Action) {
+        // Hi Rishay!
+    }
 }
 
 const actionTeleop = (Action, data) => {
-  switch (Action) {
-    // Hi Rishay!
-  }
+    switch (Action) {
+        // Hi Rishay!
+    }
 }
 
 const setup = () => {
-  const counters = document.querySelectorAll(".counter");
+    const counters = document.querySelectorAll(".counter");
 
-  counters.forEach(counter => {
-    var name = counter.getAttribute("data-name");
-    var parent = counter.parentElement.id;
-    var count = `${parent}:${name}`;
+    counters.forEach(counter => {
+        var name = counter.getAttribute("data-name");
+        var parent = counter.parentElement.id;
+        var count = `${parent}:${name}`;
 
-    console.log(count);
-    counts[count] = 0;
+        console.log(count);
+        counts[count] = 0;
 
-    var value = document.createElement("input");
-    value.value = 0;
-    value.type = "number";
+        var value = document.createElement("input");
+        value.value = 0;
+        value.type = "number";
 
-    var increment = document.createElement("button");
-    increment.innerText = "Add to " + name;
-    increment.onclick = () => {
-      counts[count] += 1;
-      value.value = parseInt(value.value) + 1;
-    };
+        var increment = document.createElement("button");
+        increment.innerText = "Add to " + name;
+        increment.onclick = () => {
+            counts[count] += 1;
+            value.value = parseInt(value.value) + 1;
+        };
 
-    var decrement = document.createElement("button");
-    decrement.innerText = "Remove from " + name;
-    decrement.onclick = () => {
-      counts[count] -= 1;
-      value.value -= 1;
-    };
+        var decrement = document.createElement("button");
+        decrement.innerText = "Remove from " + name;
+        decrement.onclick = () => {
+            counts[count] -= 1;
+            value.value -= 1;
+        };
 
-    counter.append(decrement, value, increment);
-  });
+        counter.append(decrement, value, increment);
+    });
 
-  // console.log(counts);
+    // console.log(counts);
 
-  const one_eight_buttons = document.getElementById("one_eight_buttons");
+    const one_eight_buttons = document.getElementById("one_eight_buttons");
 
-  for (var i = 0; i < 8; i++) {
-    let t = i;
+    for (var i = 0; i < 8; i++) {
+        let t = i;
 
-    var button = document.createElement("button");
-    button.innerText = i + 1;
-    button.onclick = () => Action(mode.auton, action.intake, { "id": t });
+        var button = document.createElement("button");
+        button.innerText = i + 1;
+        button.onclick = () => Action(mode.auton, action.intake, { "id": t });
 
-    var br = document.createElement("br");
+        var br = document.createElement("br");
 
-    one_eight_buttons.append(button, br);
-  }
+        one_eight_buttons.append(button, br);
+    }
 }
 
 setup();
 
 const filter = (e) => {
-  let t = e.target;
-  let badValues = /[^\d]/gi;
-  if (e.key.replace(badValues, "") === "") e.preventDefault();
+    let t = e.target;
+    let badValues = /[^\d]/gi;
+    if (e.key.replace(badValues, "") === "") e.preventDefault();
 }
 
 document.querySelectorAll("input[type=number]").forEach(el => {
-  el.addEventListener('keypress', filter);
+    el.addEventListener('keypress', filter);
 });
