@@ -143,8 +143,12 @@ const evaluateTeleopAction = (Action) => {
       if (Object.keys(Action[2]).includes("success")) data['endgame climb'] = Action[2].success ? true : data['endgame climb'];
       break;
 
-    case action.proceed:
     case action.done:
+      data['teleop defense priority'] = Action[2].defense;
+      data['endgame harmony'] = Action[2].harmony;
+      break;
+
+    case action.proceed:
       break;
   }
 }
@@ -162,7 +166,8 @@ const Action = (Mode, Action, data) => {
   if (Mode == mode.auton)  actionAuton(Action, data);
   if (Mode == mode.teleop) actionTeleop(Action, data);
 
-  actions.push([Mode, Action, data]);
+  if (Mode != mode.teleop || Action != action.done)
+    actions.push([Mode, Action, data]);
   redos = [];
 };
 
@@ -213,6 +218,7 @@ const actionTeleop = (Action, data) => {
       break;
 
     case action.done:
+      actions.push([mode.teleop, Action, data]);
       evaluateActions();
       onSection(5);
       break;
