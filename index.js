@@ -72,7 +72,10 @@ const getAutonDepositData = () => {
 
 const getTeleopDepositData = () => {
   const deposit = document.querySelector('input[name="tdeposit"]:checked').value;
-  const make = document.querySelector('input[name="tmake"]:checked').value;
+  var make = "make";
+
+  if (deposit !== "shuttle")
+    make = document.querySelector('input[name="tmake"]:checked').value;
 
   return { "deposit": deposit, "make": make };
 }
