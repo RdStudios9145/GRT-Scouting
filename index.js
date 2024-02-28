@@ -14,10 +14,9 @@ const action = {
   "intake": 0,
   "shoot": 1,
   "proceed": 2,
-  "defense_priority": 3,
-  "failure": 4,
-  "done": 5,
-  "climb": 6,
+  "failure": 3,
+  "done": 4,
+  "climb": 5,
 }
 
 const onSection = (id) => {
@@ -38,23 +37,25 @@ const start = () => {
   data['match'] = document.querySelector('input[name="match"]:checked').value;
 
   data['auton intake'] = Array(8).fill(0);
-  data['auton made amp'] = 0;
-  data['auton missed amp'] = 0;
-  data['auton made speaker'] = 0;
-  data['auton missed speaker'] = 0;
+  data['auton make amp'] = 0;
+  data['auton miss amp'] = 0;
+  data['auton make speaker'] = 0;
+  data['auton miss speaker'] = 0;
   data['auton failure'] = 0;
 
-  data['teleop made amp'] = 0;
-  data['teleop missed amp'] = 0;
-  data['teleop made speaker'] = 0;
-  data['teleop missed speaker'] = 0;
-  data['teleop made trap'] = 0;
-  data['teleop missed trap'] = 0;
+  data['teleop ground intake'] = 0;
+  data['teleop source intake'] = 0;
+  data['teleop make amp'] = 0;
+  data['teleop miss amp'] = 0;
+  data['teleop make speaker'] = 0;
+  data['teleop miss speaker'] = 0;
+  data['teleop make trap'] = 0;
+  data['teleop miss trap'] = 0;
   data['teleop shuttle'] = 0;
   data['teleop failures'] = [];
   data['teleop defense priority'] = false;
 
-  data['endgame climb attempt'] = false;
+  data['endgame climb'] = false;
   data['endgame harmony'] = false;
 
   data['additional notes'] = "";
@@ -113,7 +114,6 @@ const evaluateAutonAction = (Action) => {
       break;
 
     case action.proceed:
-    case action.defense_priority:
     case action.done:
     case action.climb:
       break;
@@ -127,7 +127,22 @@ const evaluateTeleopAction = (Action) => {
       break;
 
     case action.shoot:
-      data[`teleop ${}`]
+      data[`teleop ${Action[2].deposit == "shuttle" ? "" : Action[2].make + " "}${Action[2].deposit}`] += 1;
+      break;
+
+    case action.failure:
+      if (!Object.keys(Action[2]).includes("data")) break;
+
+      data['teleop failures'].push(Action[2].data);
+      break;
+
+    case action.climb:
+      if (Object.keys(Action[2]).includes("success")) data['endgame climb'] = Action[2].success ? true : data['endgame climb'];
+      break;
+
+    case action.proceed:
+    case action.done:
+      break;
   }
 }
 
