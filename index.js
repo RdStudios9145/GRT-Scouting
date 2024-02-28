@@ -96,7 +96,6 @@ const getFinalData = () => {
 const getClimbData = () => {
   const success = document.querySelector('input[name="climb"]:checked').value;
 
-  if (success === "success") document.querySelectorAll(".harmony").forEach(e => e.style.display = "inline");
 
   return { "success": success };
 }
@@ -168,7 +167,9 @@ const Action = (Mode, Action, data) => {
 
   if (Mode != mode.teleop || Action != action.done)
     actions.push([Mode, Action, data]);
+
   redos = [];
+  document.getElementById("redo").style.display = "none";
 };
 
 const actionAuton = (Action, data) => {
@@ -211,9 +212,12 @@ const actionTeleop = (Action, data) => {
       break;
 
     case action.climb:
-      if (Object.keys(data).includes("success"))
+      if (Object.keys(data).includes("success")) {
         onSection(1);
-      else
+
+        let success = data.success;
+        if (success === "success") document.querySelectorAll(".harmony").forEach(e => e.style.display = "inline");
+      } else
         onSection(2);
       break;
 
@@ -231,9 +235,64 @@ const undo = () => {
   var action = actions.pop();
   redos.push(action);
 
-  // ...
+  if (action[0] == mode.auton) undoAuton(action);
+  if (action[0] == mode.teleop) undoTeleop(action);
 
   if (redos.length != 0) document.getElementById("redo").style.display = "inline";
+}
+
+const undoAuton = (Action) => {
+  switch (Action[1]) {
+    case action.intake:
+      onSection(0);
+
+      if (Action[2].id === "pre") document.getElementById("preload").style.display = "inline";
+      break;
+
+    case action.shoot:
+      onSection(3);
+      break;
+
+    case action.proceed:
+      onSection(0);
+      break;
+
+    case action.failure:
+      break;
+  }
+}
+
+const undoTeleop = Action => {
+  switch (Action[1]) {
+    case action.intake:
+      onSection(1);
+      break;
+    
+    case action.shoot:
+      onSection(4);
+      break;
+
+    case action.failure:
+      if (Object.keys(Action[2]).includes("data"))
+        onSection(6);
+      else
+        onSection(1);
+      break;
+
+    case action.climb:
+      if (Object.keys(Action[2]).includes("success")) {
+        onSection(2);
+        let success = Action[2].success;
+
+        if (success === "success") document.querySelectorAll(".harmony").forEach(e => e.style.display = "none");
+      } else
+        onSection(1);
+      break;
+
+    case action.done:
+      onSection(1);
+      break;
+  }
 }
 
 const redo = () => {
@@ -242,9 +301,14 @@ const redo = () => {
   var action = redos.pop();
   actions.push(action);
 
-  // ...
+  // Action(...) will wipe the redos array, so save and restore it
+  var temp = redos;
+
+  Action(action[0], action[1], action[2]);
+  redos = temp;
 
   if (redos.length === 0) document.getElementById("redo").style.display = "none";
+  else document.getElementById("redo").style.display = "inline";
 }
 
 const setup = () => {
