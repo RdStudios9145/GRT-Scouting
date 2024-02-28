@@ -2,8 +2,8 @@ var data = {};
 var actions = [];
 var redos = [];
 
-const sheetlink = "https://roblox.com";
-const entry = ".entry10358";
+const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLSe-135qXP1VUT801Hy4HEibmNgtLD3WhloW5MM8LI8Vox9MNw/viewform";
+const entry = "entry.642803694";
 
 const mode = {
   "auton": 0,
@@ -97,12 +97,45 @@ const getClimbData = () => {
   return { "success": success };
 }
 
-const evaluateActions = () => {}
+const evaluateAutonAction = (Action) => {
+  switch (Action[1]) {
+    case action.intake:
+      if (Action[2].id == "pre") break;
+      data['auton intake'][Action[2].id] += 1;
+      break;
+    
+    case action.shoot:
+      data[`auton ${Action[2].make} ${Action[2].deposit}`] += 1;
+      break;
 
-const finalize = () => {
-  evaluateActions();
+    case action.failure:
+      data['auton failure'] = true;
+      break;
 
-  
+    case action.proceed:
+    case action.defense_priority:
+    case action.done:
+    case action.climb:
+      break;
+  }
+}
+
+const evaluateTeleopAction = (Action) => {
+  switch (Action[1]) {
+    case action.intake:
+      data[`teleop ${['ground', 'source'][Action[2].id]} intake`] += 1;
+      break;
+
+    case action.shoot:
+      data[`teleop ${}`]
+  }
+}
+
+const evaluateActions = () => {
+  for (var action of actions) {
+    if (action[0] == mode.auton) evaluateAutonAction(action);
+    if (action[0] == mode.teleop) evaluateTeleopAction(action);
+  }
 }
 
 const Action = (Mode, Action, data) => {
@@ -162,7 +195,7 @@ const actionTeleop = (Action, data) => {
       break;
 
     case action.done:
-      finalize();
+      evaluateActions();
       onSection(5);
       break;
   }
@@ -259,6 +292,18 @@ document.querySelectorAll("input[name=tdeposit]").forEach(e => {
       document.querySelectorAll("input[name=tmake],.tmake").forEach(e1 => e1.style.display = "inline");
   })
 })
+
+const stringifyData = () => {
+  var string = "";
+
+  for (var key of Object.keys(data)) {
+    string += `;${data[key]}`;
+
+    console.log(key, data[key]);
+  }
+
+  return string.substring(1);
+}
 
 const submit = () => {
   data['additional notes'] = document.getElementById("final_comments").value;
