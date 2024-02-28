@@ -55,6 +55,8 @@
       <input type="checkbox" class="harmony" id="harmony" name="harmony">
       <label for="harmony" class="harmony">HARMONY</label>
 
+      <button id="climb_attempt" onclick="Action(mode.teleop, action.climb, { })">CLIMB ATTEMPT</button>
+
       <button id="game_over" onclick="Action(mode.teleop, action.done, getFinalData())">
         Game Over
       </button>
@@ -114,22 +116,27 @@
       <input type="radio" id="miss_td" name="tmake" value="miss">
       <label class="tmake" for="miss_td">MISS</label>
 
-      <button id="submit_auton_deposit" onclick="Action(mode.auton, action.shoot, getTeleopDepositData())">
+      <button id="submit_auton_deposit" onclick="Action(mode.teleop, action.shoot, getTeleopDepositData())">
         Record
       </button>
     </div>
 
     <div class="section" id="final">
-      <textarea rows="10" cols="20" placeholder="Final Comments"></textarea>
+      <textarea id="final_comments" rows="10" cols="20" placeholder="Final Comments"></textarea>
 
       <div id="final_data"></div>
 
-      <a href="" target="_blank" rel="noopener noreferrer" id="submit"><button onclick="test()">
+      <a href="" target="_blank" rel="noopener noreferrer" id="submit"><button onclick="submit()">
         Submit
       </button></a>
 
       <input id="submit_data" type="text">
       <button id="show_data" onclick="copyData()">Copy Data</button>
+    </div>
+
+    <div class="section" id="teleop_fail">
+      <textarea id="fail_data" rows="10" cols="20" placeholder="More Information"></textarea>
+      <button id="fail" onclick="Action(mode.teleop, action.failure, getTeleopFailureData())">Record</button>
     </div>
 
     <button class="section" id="proceed" onclick="Action(mode.auton, action.proceed, {})">

@@ -2,6 +2,9 @@ var data = {};
 var actions = [];
 var redos = [];
 
+const sheetlink = "https://roblox.com";
+const entry = ".entry10358";
+
 const mode = {
   "auton": 0,
   "teleop": 1,
@@ -13,6 +16,8 @@ const action = {
   "proceed": 2,
   "defense_priority": 3,
   "failure": 4,
+  "done": 5,
+  "climb": 6,
 }
 
 const onSection = (id) => {
@@ -49,7 +54,7 @@ const start = () => {
   data['teleop failures'] = [];
   data['teleop defense priority'] = false;
 
-  data['endgame climb attempt'] = [];
+  data['endgame climb attempt'] = false;
   data['endgame harmony'] = false;
 
   data['additional notes'] = "";
@@ -69,6 +74,19 @@ const getTeleopDepositData = () => {
   const make = document.querySelector('input[name="tmake"]:checked').value;
 
   return { "deposit": deposit, "make": make };
+}
+
+const getTeleopFailureData = () => {
+  const data = document.getElementById("fail_data").value;
+
+  return { "data": data };
+}
+
+const getFinalData = () => {
+  const defense = document.getElementById("defense").checked;
+  const harmony = document.getElementById("harmony").checked;
+
+  return { "defense": defense, "harmony": harmony };
 }
 
 const getClimbData = () => {
@@ -99,15 +117,51 @@ const Action = (Mode, Action, data) => {
 
 const actionAuton = (Action, data) => {
   switch (Action) {
-    // Hi Rishay!
+    case action.intake:
+      onSection(3);
+
+      if (data.id === "pre") document.getElementById("preload").style.display = "none";
+
+      break;
+
+    case action.shoot:
+      onSection(0);
+      break;
+
+    case action.proceed:
+      onSection(1);
+      break;
+
+    case action.failure:
+      break;
   }
 }
 
 const actionTeleop = (Action, data) => {
   switch (Action) {
-    // Hi Rishay!
+    case action.intake:
+      onSection(4);
+      break;
 
-    case action.final:
+    case action.shoot:
+      onSection(1);
+      break;
+
+    case action.failure:
+      if (Object.keys(data).includes("data"))
+        onSection(1);
+      else
+        onSection(6);
+      break;
+
+    case action.climb:
+      if (Object.keys(data).includes("success"))
+        onSection(1);
+      else
+        onSection(2);
+      break;
+
+    case action.done:
       finalize();
       onSection(5);
       break;
@@ -206,7 +260,8 @@ document.querySelectorAll("input[name=tdeposit]").forEach(e => {
   })
 })
 
-const test = () => {
+const submit = () => {
+  data['additional notes'] = document.getElementById("final_comments").value;
 
-  document.getElementById("submit").href = "https://roblox.com";
+  document.getElementById("submit").href = `${sheetlink}?${entry}=${stringifyData()}`;
 }
