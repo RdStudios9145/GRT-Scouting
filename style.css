@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .section {
   display: none;
 }
@@ -48,6 +53,20 @@ body[data-section="6"] > #teleop_fail {
 
 .harmony, .climb {
   display: none;
+}
+
+#start {
+  position: absolute;
+  width: 250px;
+  height: 60px;
+  bottom: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: auto;
+  border-radius: 0;
+  border: 0;
+  background-color: #cf3f3f;
+  font-size: 2rem;
 }
 
 input::-webkit-outer-spin-button,
