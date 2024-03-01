@@ -67,6 +67,7 @@ body[data-section="6"] > #teleop_fail {
   border: 0;
   background-color: #cf3f3f;
   font-size: 2rem;
+  color: black;
 }
 
 input::-webkit-outer-spin-button,
