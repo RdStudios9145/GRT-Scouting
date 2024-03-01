@@ -21,40 +21,15 @@ button:hover {
   display: none;
 }
 
-body[data-section="-1"] > #startup {
-  display: block;
-}
-
-body[data-section="-1"] > #constant {
-  display: none;
-}
-
-body[data-section="0"] > #auton, body[data-section="0"] > #proceed {
-  display: block;
-}
-
-body[data-section="1"] > #teleop {
-  display: block;
-}
-
-body[data-section="2"] > #climb {
-  display: block;
-}
-
-body[data-section="3"] > #auton_deposit {
-  display: block;
-}
-
-body[data-section="4"] > #teleop_deposit {
-  display: block;
-}
-
-body[data-section="5"] > #final {
-  display: block;
-}
-
-body[data-section="6"] > #teleop_fail {
-  display: block;
+#game_over {
+  position: absolute;
+  bottom: 50px;
+  width: 80%;
+  height: 70px;
+  left: 50%;
+  translate: calc(-50% - 5px) 0;
+  background-color: #cf3f3f;
+  font-size: 2rem;
 }
 
 #submit_data, #show_data {
@@ -125,4 +100,40 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+body[data-section="-1"] > #startup {
+  display: block;
+}
+
+body[data-section="-1"] > #constant {
+  display: none;
+}
+
+body[data-section="0"] > #auton, body[data-section="0"] > #proceed {
+  display: block;
+}
+
+body[data-section="1"] > #teleop {
+  display: block;
+}
+
+body[data-section="2"] > #climb {
+  display: block;
+}
+
+body[data-section="3"] > #auton_deposit {
+  display: block;
+}
+
+body[data-section="4"] > #teleop_deposit {
+  display: block;
+}
+
+body[data-section="5"] > #final {
+  display: block;
+}
+
+body[data-section="6"] > #teleop_fail {
+  display: block;
 }
