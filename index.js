@@ -175,6 +175,7 @@ const Action = (Mode, Action, data) => {
 
   redos = [];
   hide("#redo");
+  For("input[type='radio']", e => e.checked = false);
 };
 
 const actionAuton = (Action, data) => {
@@ -361,11 +362,14 @@ const setup = () => {
   const one_eight_buttons = document.getElementById("one_eight_buttons").children;
 
   for (let i = 0; i < 8; i++) {
-    var button = document.createElement("button");
+    let button = document.createElement("button");
     button.innerText = i + 1;
-    button.onclick = () => Action(mode.auton, action.intake, { "id": i });
+    button.onclick = () => {
+      Action(mode.auton, action.intake, { "id": i });
+      button.style.display = "none";
+    };
 
-    var br = document.createElement("br");
+    let br = document.createElement("br");
 
     let t = (i < 3 ? 0 : 1);
     one_eight_buttons[t].append(button, br);
@@ -386,7 +390,8 @@ document.querySelectorAll("input[type=number]").forEach(el => {
 
 document.querySelectorAll("input[name=tdeposit]").forEach(e => {
   e.addEventListener("click", () => {
-    Action(mode.teleop, action.shoot, { "deposit": "shuttle", "make": "make" });
+    if (e.id === "shuttle_td")
+      Action(mode.teleop, action.shoot, { "deposit": "shuttle", "make": "make" });
   })
 })
 

@@ -9,8 +9,12 @@ button {
   margin: 5px;
   color: black;
   border-radius: 0;
-  border: 0;
+  border: 1px solid lightgrey;
   background-color: #aaa;
+}
+
+button:hover {
+  border: 1px solid grey;
 }
 
 .section {
@@ -80,12 +84,20 @@ body[data-section="6"] > #teleop_fail {
   color: black;
 }
 
+div.section {
+  padding-top: 200px;
+}
+
 #one_eight_buttons {
   display: flex;
   justify-content: space-evenly;
   height: fit-content;
   position: relative;
   margin-bottom: 40px;
+}
+
+#undo {
+  display: none;
 }
 
 #one_eight_buttons > div:first-child {
