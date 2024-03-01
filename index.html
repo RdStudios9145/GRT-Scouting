@@ -28,6 +28,9 @@
       <input type="radio" id="playoff_match" name="match" value="playoff">
       <label for="playoff_match">Playoff</label>
 
+      <input type="radio" id="finals_match" name="match" value="finals">
+      <label for="finals_match">Finals</label>
+
       <button id="start" onclick="start()">Start</button>
     </div>
 
@@ -56,24 +59,16 @@
       <label for="harmony" class="harmony">HARMONY</label>
 
       <button id="climb_attempt" onclick="Action(mode.teleop, action.climb, { })">CLIMB ATTEMPT</button>
+      <button class="climb" id="climb_success" onclick="Action(mode.teleop, action.climb, { 'success': 'success' })">
+        SUCCESS</button>
+      <button class="climb" id="climb_fail" onclick="Action(mode.teleop, action.climb, { 'success': 'fail' })">
+        FAIL</button>
 
       <button id="game_over" onclick="Action(mode.teleop, action.done, getFinalData())">
         Game Over
       </button>
     </div>
 
-    <div class="section" id="climb">
-      <h2>Climb Attempt</h2>
-      <input type="radio" id="climb_success" name="climb" value="success">
-      <label for="climb_success">SUCCESS</label>
-
-      <input type="radio" id="climb_fail" name="climb" value="fail">
-      <label for="climb_fail">FAIL</label>
-
-      <button id="climb_submit" onclick="Action(mode.teleop, action.climb, getClimbData())">
-        Record
-      </button>
-    </div>
 
     <div class="section" id="auton_deposit">
       <h2>Deposit</h2>
@@ -84,41 +79,31 @@
       <label for="speaker_ad">SPEAKER</label>
 
 
-      <input type="radio" id="make_ad" name="amake" value="make">
-      <label for="make_ad">MAKE</label>
-
-      <input type="radio" id="miss_ad" name="amake" value="miss">
-      <label for="miss_ad">MISS</label>
-
-      <button id="submit_auton_deposit" onclick="Action(mode.auton, action.shoot, getAutonDepositData())">
-        Record
-      </button>
+      <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'make' })">
+        MAKE</button>
+      <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'miss' })">
+        MISS</button>
     </div>
 
     <div class="section" id="teleop_deposit">
       <h2>Deposit</h2>
       <input type="radio" id="amp_td" name="tdeposit" value="amp">
-      <label for="amp_td">AMP</label>
+      <div><label for="amp_td">AMP</label></div>
 
       <input type="radio" id="speaker_td" name="tdeposit" value="speaker">
-      <label for="speaker_td">SPEAKER</label>
+      <div><label for="speaker_td">SPEAKER</label></div>
 
       <input type="radio" id="trap_td" name="tdeposit" value="trap">
-      <label for="trap_td">TRAP</label>
+      <div><label for="trap_td">TRAP</label></div>
 
       <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle">
-      <label for="shuttle_td">SHUTTLE</label>
+      <div><label for="shuttle_td">SHUTTLE</label></div>
 
 
-      <input type="radio" id="make_td" name="tmake" value="make">
-      <label class="tmake" for="make_td">MAKE</label>
-
-      <input type="radio" id="miss_td" name="tmake" value="miss">
-      <label class="tmake" for="miss_td">MISS</label>
-
-      <button id="submit_auton_deposit" onclick="Action(mode.teleop, action.shoot, getTeleopDepositData())">
-        Record
-      </button>
+      <button class="makemiss" id="make_td" onclick="Action(mode.teleop, action.shoot, { 'deposit': teleopDepositLoc(), 'make': 'make' })">
+        MAKE</button> 
+      <button class="makemiss" id="miss_td" onclick="Action(mode.teleop, action.shoot, { 'deposit': teleopDepositLoc(), 'make': 'miss' })">
+        MISS</button>
     </div>
 
     <div class="section" id="final">
@@ -148,6 +133,7 @@
       <button id="redo" onclick="redo()">Redo</button>
     </div>
 
+    <script src="utils.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

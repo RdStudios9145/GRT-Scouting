@@ -63,15 +63,18 @@ const start = () => {
   onSection(0);
 };
 
-const getAutonDepositData = () => {
+const autonDepositLoc = () => {
   const deposit = document.querySelector('input[name="adeposit"]:checked').value;
+  return deposit;
   const make = document.querySelector('input[name="amake"]:checked').value;
 
   return { "deposit": deposit, "make": make };
 }
 
-const getTeleopDepositData = () => {
+const teleopDepositLoc = () => {
   const deposit = document.querySelector('input[name="tdeposit"]:checked').value;
+  return deposit;
+
   var make = "make";
 
   if (deposit !== "shuttle")
@@ -169,7 +172,7 @@ const Action = (Mode, Action, data) => {
     actions.push([Mode, Action, data]);
 
   redos = [];
-  document.getElementById("redo").style.display = "none";
+  hide("#redo");
 };
 
 const actionAuton = (Action, data) => {
@@ -177,7 +180,7 @@ const actionAuton = (Action, data) => {
     case action.intake:
       onSection(3);
 
-      if (data.id === "pre") document.getElementById("preload").style.display = "none";
+      if (data.id === "pre") hide("#preload");
 
       break;
 
@@ -212,13 +215,21 @@ const actionTeleop = (Action, data) => {
       break;
 
     case action.climb:
-      if (Object.keys(data).includes("success")) {
-        onSection(1);
+      if (!Object.keys(data).includes("success")) {
+        hide("#climb_attempt");
+        show(".climb");
 
-        let success = data.success;
-        if (success === "success") document.querySelectorAll(".harmony").forEach(e => e.style.display = "inline");
-      } else
-        onSection(2);
+        break;
+      }
+
+      hide(".climb");
+
+      let success = data.success;
+      if (success === "success") {
+        show(".harmony");
+      } else {
+        show("#climb_attempt");
+      }
       break;
 
     case action.done:
@@ -238,7 +249,7 @@ const undo = () => {
   if (action[0] == mode.auton) undoAuton(action);
   if (action[0] == mode.teleop) undoTeleop(action);
 
-  if (redos.length != 0) document.getElementById("redo").style.display = "inline";
+  if (redos.length != 0) hide("#redo");
 }
 
 const undoAuton = (Action) => {
@@ -246,7 +257,7 @@ const undoAuton = (Action) => {
     case action.intake:
       onSection(0);
 
-      if (Action[2].id === "pre") document.getElementById("preload").style.display = "inline";
+      if (Action[2].id === "pre") hide("#preload");
       break;
 
     case action.shoot:
@@ -284,7 +295,7 @@ const undoTeleop = Action => {
         onSection(2);
         let success = Action[2].success;
 
-        if (success === "success") document.querySelectorAll(".harmony").forEach(e => e.style.display = "none");
+        if (success === "success") hide(".harmony");
       } else
         onSection(1);
       break;
@@ -296,7 +307,7 @@ const undoTeleop = Action => {
 }
 
 const redo = () => {
-  if (redos.length == 0) return document.getElementById("redo").style.display = "none";
+  if (redos.length == 0) return hide("#redo");
 
   var action = redos.pop();
   actions.push(action);
@@ -307,8 +318,8 @@ const redo = () => {
   Action(action[0], action[1], action[2]);
   redos = temp;
 
-  if (redos.length === 0) document.getElementById("redo").style.display = "none";
-  else document.getElementById("redo").style.display = "inline";
+  if (redos.length === 0) hide("#redo");
+  else show("#redo");
 }
 
 const setup = () => {
@@ -347,12 +358,10 @@ const setup = () => {
 
   const one_eight_buttons = document.getElementById("one_eight_buttons");
 
-  for (var i = 0; i < 8; i++) {
-    let t = i;
-
+  for (let i = 0; i < 8; i++) {
     var button = document.createElement("button");
     button.innerText = i + 1;
-    button.onclick = () => Action(mode.auton, action.intake, { "id": t });
+    button.onclick = () => Action(mode.auton, action.intake, { "id": i });
 
     var br = document.createElement("br");
 
@@ -375,9 +384,9 @@ document.querySelectorAll("input[type=number]").forEach(el => {
 document.querySelectorAll("input[name=tdeposit]").forEach(e => {
   e.addEventListener("click", () => {
     if (e.id === "shuttle_td") {
-      document.querySelectorAll("input[name=tmake],.tmake").forEach(e1 => e1.style.display = "none");
+      hide("input[name=tmake],.tmake");
     } else 
-      document.querySelectorAll("input[name=tmake],.tmake").forEach(e1 => e1.style.display = "inline");
+      show("input[name=tmake],.tmake");
   })
 })
 
