@@ -60,6 +60,8 @@ const start = () => {
 
   data['additional notes'] = "";
 
+  if (data['color'] === "Blue") document.body.setAttribute("data-blue", "true");
+
   onSection(0);
 };
 
@@ -356,7 +358,7 @@ const setup = () => {
 
   // console.log(counts);
 
-  const one_eight_buttons = document.getElementById("one_eight_buttons");
+  const one_eight_buttons = document.getElementById("one_eight_buttons").children;
 
   for (let i = 0; i < 8; i++) {
     var button = document.createElement("button");
@@ -365,7 +367,8 @@ const setup = () => {
 
     var br = document.createElement("br");
 
-    one_eight_buttons.append(button, br);
+    let t = (i < 3 ? 0 : 1);
+    one_eight_buttons[t].append(button, br);
   }
 }
 
@@ -383,10 +386,7 @@ document.querySelectorAll("input[type=number]").forEach(el => {
 
 document.querySelectorAll("input[name=tdeposit]").forEach(e => {
   e.addEventListener("click", () => {
-    if (e.id === "shuttle_td") {
-      hide("input[name=tmake],.tmake");
-    } else 
-      show("input[name=tmake],.tmake");
+    Action(mode.teleop, action.shoot, { "deposit": "shuttle", "make": "make" });
   })
 })
 
