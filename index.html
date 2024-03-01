@@ -93,7 +93,7 @@
       <input type="radio" id="trap_td" name="tdeposit" value="trap">
       <div><label for="trap_td">TRAP</label></div>
 
-      <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle">
+      <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle" onclick="Action(mode.teleop, action.shoot, { "deposit": "shuttle", "make": "make" });">
       <div><label for="shuttle_td">SHUTTLE</label></div>
 
       <button class="makemiss" id="make_td" onclick="Action(mode.teleop, action.shoot, { 'deposit': teleopDepositLoc(), 'make': 'make' })">

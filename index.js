@@ -379,13 +379,6 @@ document.querySelectorAll("input[type=number]").forEach(el => {
   el.addEventListener('keypress', filter);
 });
 
-document.querySelectorAll("input[name=tdeposit]").forEach(e => {
-  e.addEventListener("click", () => {
-    if (e.id === "shuttle_td")
-      Action(mode.teleop, action.shoot, { "deposit": "shuttle", "make": "make" });
-  })
-})
-
 const stringifyData = () => {
   var string = "";
 
