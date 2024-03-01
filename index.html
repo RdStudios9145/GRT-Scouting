@@ -61,11 +61,6 @@
       <input type="checkbox" class="harmony" id="harmony" name="harmony">
       <label for="harmony" class="harmony">HARMONY</label>
 
-      <button id="climb_attempt" onclick="Action(mode.teleop, action.climb, { })">CLIMB ATTEMPT</button>
-      <button class="climb" id="climb_success" onclick="Action(mode.teleop, action.climb, { 'success': 'success' })">
-        SUCCESS</button>
-      <button class="climb" id="climb_fail" onclick="Action(mode.teleop, action.climb, { 'success': 'fail' })">
-        FAIL</button>
 
       <button id="game_over" onclick="Action(mode.teleop, action.done, getFinalData())">
         Game Over
@@ -80,7 +75,6 @@
 
       <input type="radio" id="speaker_ad" name="adeposit" value="speaker">
       <label for="speaker_ad">SPEAKER</label>
-
 
       <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'make' })">
         MAKE</button>
@@ -101,8 +95,6 @@
 
       <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle">
       <div><label for="shuttle_td">SHUTTLE</label></div>
-
-      <button id="climb_attempt" onclick="Action(mode.teleop, action.climb, { })">CLIMB ATTEMPT</button>
 
       <button class="makemiss" id="make_td" onclick="Action(mode.teleop, action.shoot, { 'deposit': teleopDepositLoc(), 'make': 'make' })">
         MAKE</button> 
@@ -131,6 +123,14 @@
     <button class="section" id="proceed" onclick="Action(mode.auton, action.proceed, {})">
       Proceed to Teleop
     </button>
+
+    <div id="climbing">
+      <button id="climb_attempt" onclick="Action(mode.teleop, action.climb, { })">CLIMB ATTEMPT</button>
+      <button class="climb" id="climb_success" onclick="Action(mode.teleop, action.climb, { 'success': 'success' })">
+        SUCCESS</button>
+      <button class="climb" id="climb_fail" onclick="Action(mode.teleop, action.climb, { 'success': 'fail' })">
+        FAIL</button>
+    </div>
 
     <div id="constant">
       <button id="undo" onclick="undo()">Undo</button>
