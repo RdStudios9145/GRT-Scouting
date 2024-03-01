@@ -96,6 +96,10 @@ div.section {
   margin-bottom: 40px;
 }
 
+#climbing {
+  display: none;
+}
+
 #undo {
   display: none;
 }

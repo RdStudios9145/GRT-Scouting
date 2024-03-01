@@ -68,21 +68,11 @@ const start = () => {
 const autonDepositLoc = () => {
   const deposit = document.querySelector('input[name="adeposit"]:checked').value;
   return deposit;
-  const make = document.querySelector('input[name="amake"]:checked').value;
-
-  return { "deposit": deposit, "make": make };
 }
 
 const teleopDepositLoc = () => {
   const deposit = document.querySelector('input[name="tdeposit"]:checked').value;
   return deposit;
-
-  var make = "make";
-
-  if (deposit !== "shuttle")
-    make = document.querySelector('input[name="tmake"]:checked').value;
-
-  return { "deposit": deposit, "make": make };
 }
 
 const getTeleopFailureData = () => {
@@ -193,6 +183,7 @@ const actionAuton = (Action, data) => {
 
     case action.proceed:
       onSection(1);
+      show("#climbing");
       break;
 
     case action.failure:
