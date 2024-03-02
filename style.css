@@ -30,6 +30,7 @@ button:hover {
   translate: calc(-50% - 5px) 0;
   background-color: #cf3f3f;
   font-size: 2rem;
+  display: none;
 }
 
 #submit_data, #show_data {

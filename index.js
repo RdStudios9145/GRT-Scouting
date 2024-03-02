@@ -184,6 +184,7 @@ const actionAuton = (Action, data) => {
     case action.proceed:
       onSection(1);
       show("#climbing");
+      show("#game_over");
       break;
 
     case action.failure:
