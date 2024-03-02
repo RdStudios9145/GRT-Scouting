@@ -1,6 +1,12 @@
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
+  position: relative;
+  height: 100%;
 }
 
 button {
@@ -23,7 +29,7 @@ button:hover {
 
 #game_over {
   position: absolute;
-  bottom: 50px;
+  bottom: 0px;
   width: 80%;
   height: 70px;
   left: 50%;
@@ -49,7 +55,7 @@ button:hover {
   position: absolute;
   width: 250px;
   height: 60px;
-  bottom: 80px;
+  bottom: 0px;
   left: 50%;
   transform: translate(-50%, 0);
   margin: auto;
@@ -73,10 +79,6 @@ div.section {
 }
 
 #climbing {
-  display: none;
-}
-
-#undo {
   display: none;
 }
 

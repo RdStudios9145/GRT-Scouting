@@ -252,15 +252,19 @@ const undoAuton = (Action) => {
     case action.intake:
       onSection(0);
 
-      if (Action[2].id === "pre") hide("#preload");
+      if (Action[2].id === "pre") show("#preload");
       break;
 
     case action.shoot:
       onSection(3);
+
+      For("input[name=adeposit]" e => {});
       break;
 
     case action.proceed:
       onSection(0);
+      hide("#climbing");
+      hide("#game_over");
       break;
 
     case action.failure:
@@ -286,13 +290,21 @@ const undoTeleop = Action => {
       break;
 
     case action.climb:
-      if (Object.keys(Action[2]).includes("success")) {
-        onSection(2);
-        let success = Action[2].success;
+      if (!Object.keys(Action[2]).includes("success")) {
+        show("#climb_attempt");
+        hide(".climb");
 
-        if (success === "success") hide(".harmony");
-      } else
-        onSection(1);
+        break;
+      }
+
+      show(".climb");
+
+      let success = data.success;
+      if (success === "success") {
+        hide(".harmony");
+      } else {
+        hide("#climb_attempt");
+      }
       break;
 
     case action.done:
