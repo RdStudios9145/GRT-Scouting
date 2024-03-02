@@ -258,7 +258,7 @@ const undoAuton = (Action) => {
     case action.shoot:
       onSection(3);
 
-      For("input[name=adeposit]" e => {});
+      For("input[name=adeposit]", e => {});
       break;
 
     case action.proceed:
