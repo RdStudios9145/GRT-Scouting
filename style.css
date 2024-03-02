@@ -66,10 +66,6 @@ button:hover {
   color: black;
 }
 
-div.section {
-  padding-top: 150px;
-}
-
 #one_eight_buttons {
   display: flex;
   justify-content: space-evenly;
