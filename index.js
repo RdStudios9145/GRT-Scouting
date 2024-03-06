@@ -231,6 +231,7 @@ const actionTeleop = (Action, data) => {
       actions.push([mode.teleop, Action, data]);
       evaluateActions();
       onSection(5);
+      hide("#game_over");
       break;
   }
 }
@@ -408,4 +409,5 @@ const submit = () => {
   data['additional notes'] = document.getElementById("final_comments").value;
 
   document.getElementById("submit").href = `${sheetlink}?${entry}=${stringifyData()}`;
+  For("#submit > button", e => e.innerText = "Submit Again");
 }
