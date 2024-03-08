@@ -79,11 +79,13 @@ button:hover {
 }
 
 #one_eight_buttons > div:first-child {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 #one_eight_buttons > div:first-child > button {
-  translate: 0 calc(200% + 20px);
+  --translate: 0 calc(200% + 20px);
 }
 
 body[data-blue] #one_eight_buttons {

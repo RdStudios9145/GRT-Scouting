@@ -182,7 +182,11 @@ const actionAuton = (Action, data) => {
       break;
 
     case action.proceed:
-      onSection(1);
+      if (Object.keys(data).includes("ground_intake")) {
+        onSection(4);
+      } else
+        onSection(1);
+
       show("#climbing");
       show("#game_over");
       break;
@@ -371,7 +375,7 @@ const setup = () => {
     button.innerText = i + 1;
     button.onclick = () => {
       Action(mode.auton, action.intake, { "id": i });
-      button.style.display = "none";
+      button.style.opacity = "0";
     };
 
     let br = document.createElement("br");
