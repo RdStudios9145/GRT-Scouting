@@ -9,7 +9,7 @@ body {
   height: 100%;
 }
 
-button {
+button, div:has(> input[type=radio]) {
   min-width: 50px;
   min-height: 50px;
   margin: 5px;
@@ -17,6 +17,14 @@ button {
   border-radius: 0;
   border: 1px solid lightgrey;
   background-color: #aaa;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+div:has(> input[type=radio]:checked) {
+  background: blue;
 }
 
 button:hover {

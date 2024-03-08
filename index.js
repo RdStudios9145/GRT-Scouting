@@ -383,6 +383,8 @@ const setup = () => {
     let t = (i < 3 ? 0 : 1);
     one_eight_buttons[t].append(button, br);
   }
+
+  For("div:has(> label)", e => e.onclick = () => e.children[0].click());
 }
 
 setup();

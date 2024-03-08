@@ -19,17 +19,25 @@
       <input type="number" id="match_number" placeholder="Match #">
       <input type="number" id="team_number" placeholder="Team #">
 
-      <input type="radio" id="practice_match" name="match" value="practice">
-      <label for="practice_match">Practice</label>
+      <div>
+        <input type="radio" id="practice_match" name="match" value="practice">
+        <label for="practice_match">Practice</label>
+      </div>
 
-      <input type="radio" id="qual_match" name="match" value="qual">
-      <label for="qual_match">Qualifier</label>
+      <div>
+        <input type="radio" id="qual_match" name="match" value="qual">
+        <label for="qual_match">Qualifier</label>
+      </div>
 
-      <input type="radio" id="playoff_match" name="match" value="playoff">
-      <label for="playoff_match">Playoff</label>
+      <div>
+        <input type="radio" id="playoff_match" name="match" value="playoff">
+        <label for="playoff_match">Playoff</label>
+      </div>
 
-      <input type="radio" id="finals_match" name="match" value="finals">
-      <label for="finals_match">Finals</label>
+      <div>
+        <input type="radio" id="finals_match" name="match" value="finals">
+        <label for="finals_match">Finals</label>
+      </div>
 
       <button id="start" onclick="start()">Start</button>
     </div>
@@ -53,8 +61,10 @@
       <button id="ground_intake" onclick="Action(mode.teleop, action.intake, { 'id': 0 })">GROUND</button>
       <button id="source_intake" onclick="Action(mode.teleop, action.intake, { 'id': 1 })">SOURCE</button>
 
-      <input type="checkbox" id="defense" name="defense">
-      <label for="defense">DEFENSE PRIORITY</label>
+      <div>
+        <input type="checkbox" id="defense" name="defense">
+        <label for="defense">DEFENSE PRIORITY</label>
+      </div>
 
       <button id="tfail" onclick="Action(mode.teleop, action.failure, { })">FAILURE</button>
 
@@ -65,11 +75,15 @@
 
     <div class="section" id="auton_deposit">
       <h2>Deposit</h2>
-      <input type="radio" id="amp_ad" name="adeposit" value="amp">
-      <label for="amp_ad">AMP</label>
+      <div>
+        <input type="radio" id="amp_ad" name="adeposit" value="amp">
+        <label for="amp_ad">AMP</label>
+      </div>
 
-      <input type="radio" id="speaker_ad" name="adeposit" value="speaker">
-      <label for="speaker_ad">SPEAKER</label>
+      <div>
+        <input type="radio" id="speaker_ad" name="adeposit" value="speaker">
+        <label for="speaker_ad">SPEAKER</label>
+      </div>
 
       <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'make' })">
         MAKE</button>
@@ -81,17 +95,25 @@
 
     <div class="section" id="teleop_deposit">
       <h2>Deposit</h2>
-      <input type="radio" id="amp_td" name="tdeposit" value="amp">
-      <div><label for="amp_td">AMP</label></div>
+      <div>
+        <input type="radio" id="amp_td" name="tdeposit" value="amp">
+        <label for="amp_td">AMP</label>
+      </div>
 
-      <input type="radio" id="speaker_td" name="tdeposit" value="speaker">
-      <div><label for="speaker_td">SPEAKER</label></div>
+      <div>
+        <input type="radio" id="speaker_td" name="tdeposit" value="speaker">
+        <label for="speaker_td">SPEAKER</label>
+      </div>
 
-      <input type="radio" id="trap_td" name="tdeposit" value="trap">
-      <div><label for="trap_td">TRAP</label></div>
+      <div>
+        <input type="radio" id="trap_td" name="tdeposit" value="trap">
+        <label for="trap_td">TRAP</label>
+      </div>
 
-      <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle" onclick="Action(mode.teleop, action.shoot, { 'deposit': 'shuttle', 'make': 'make' })">
-      <div><label for="shuttle_td">SHUTTLE</label></div>
+      <div>
+        <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle" onclick="Action(mode.teleop, action.shoot, { 'deposit': 'shuttle', 'make': 'make' })">
+        <label for="shuttle_td">SHUTTLE</label>
+      </div>
 
       <button class="makemiss" id="make_td" onclick="Action(mode.teleop, action.shoot, { 'deposit': teleopDepositLoc(), 'make': 'make' })">
         MAKE</button> 
