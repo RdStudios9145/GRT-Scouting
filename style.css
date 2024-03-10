@@ -9,7 +9,7 @@ body {
   height: 100%;
 }
 
-button, div:has(> input[type=radio]) {
+button, div:has(> input[type="radio"]) {
   min-width: 50px;
   min-height: 50px;
   margin: 5px;

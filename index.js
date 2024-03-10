@@ -174,6 +174,7 @@ const actionAuton = (Action, data) => {
       onSection(3);
 
       if (data.id === "pre") hide("#preload");
+      For(`#auton${data.id}`, e => e.style.opacity = "0");
 
       break;
 
@@ -258,16 +259,21 @@ const undoAuton = (Action) => {
       onSection(0);
 
       if (Action[2].id === "pre") show("#preload");
+      For(`#auton${Action[2].id}`, e => e.style.opacity = "100%");
       break;
 
     case action.shoot:
       onSection(3);
 
-      For("input[name=adeposit]", e => {});
+      For(`input[name=adeposit][value=${Action[2].deposit}]`, e => { e.checked = true; });
       break;
 
     case action.proceed:
-      onSection(0);
+      if (Action[2].ground_intake === true)
+        onSection(3);
+      else
+        onSection(0);
+
       hide("#climbing");
       hide("#game_over");
       break;
@@ -285,6 +291,8 @@ const undoTeleop = Action => {
     
     case action.shoot:
       onSection(4);
+
+      For(`input[name=tdeposit][value=${Action[2].deposit}]`, e => e.checked = true);
       break;
 
     case action.failure:
@@ -304,12 +312,13 @@ const undoTeleop = Action => {
 
       show(".climb");
 
-      let success = data.success;
+      let success = Action[2].success;
+      console.log(success);
       if (success === "success") {
         hide(".harmony");
-      } else {
-        hide("#climb_attempt");
       }
+      hide("#climb_attempt");
+      
       break;
 
     case action.done:
@@ -373,10 +382,8 @@ const setup = () => {
   for (let i = 0; i < 8; i++) {
     let button = document.createElement("button");
     button.innerText = i + 1;
-    button.onclick = () => {
-      Action(mode.auton, action.intake, { "id": i });
-      button.style.opacity = "0";
-    };
+    button.onclick = () => Action(mode.auton, action.intake, { "id": i });
+    button.id = `auton${i}`;
 
     let br = document.createElement("br");
 
@@ -384,7 +391,7 @@ const setup = () => {
     one_eight_buttons[t].append(button, br);
   }
 
-  For("div:has(> label)", e => e.onclick = () => e.children[0].click());
+  For("div > input[type=radio]", e => e.parentNode.onclick = () => e.click());
 }
 
 setup();
