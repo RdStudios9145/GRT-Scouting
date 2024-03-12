@@ -85,12 +85,14 @@
         <label for="speaker_ad">SPEAKER</label>
       </div>
 
-      <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'make' })">
-        MAKE</button>
-      <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'miss' })">
-        MISS</button>
+      <div class="seperator"></div>
 
-      <button id="proceed_deposit" onclick="Action(mode.auton, action.proceed, { 'ground_intake': true})">Proceed to Teleop Deposit</button>
+      <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'make' })">
+        MAKE</button><br />
+      <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'miss' })">
+        MISS</button><br />
+
+      <button id="proceed_deposit" onclick="Action(mode.auton, action.proceed, { 'ground_intake': true })">Proceed to Teleop Deposit</button>
     </div>
 
     <div class="section" id="teleop_deposit">

@@ -10,4 +10,4 @@ const For = (query, callback) => {
   document.querySelectorAll(query).forEach(callback);
 }
 
-document.querySelector("head").append((() => { let style = document.createElement("link"); style.rel = "stylesheet"; style.href = "style.css?" + Date.now(); console.log(style); return style; })());
+// document.querySelector("head").append((() => { let style = document.createElement("link"); style.rel = "stylesheet"; style.href = "style.css?" + Date.now(); console.log(style); return style; })());

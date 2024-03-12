@@ -7,6 +7,7 @@ body {
   padding: 0;
   position: relative;
   height: 100%;
+  text-align: center;
 }
 
 button, div:has(> input[type="radio"]) {
@@ -29,6 +30,29 @@ div:has(> input[type=radio]:checked) {
 
 button:hover {
   border: 1px solid grey;
+}
+
+button, div:has(> label) {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+div:has(> label) {
+  display: block flex;
+}
+
+button {
+  display: inline-flex;
+  width: calc(100% - 10px);
+  font-size: inherit;
+}
+
+.seperator {
+  height: 0;
+  width: calc(100% - 10px);
+  margin: 0px 5px;
+  border: 1px solid black;
 }
 
 .section {
