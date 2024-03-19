@@ -426,5 +426,5 @@ const submit = () => {
   data['additional notes'] = document.getElementById("final_comments").value;
 
   document.getElementById("submit").href = `${sheetlink}?${entry}=${stringifyData()}`;
-  For("#submit > button", e => e.innerText = "Submit Again");
+  For("#submit > button", e => { e.innerText = "Submit Again"; e.style.background = "red" });
 }
