@@ -2,7 +2,8 @@ var data = {};
 var actions = [];
 var redos = [];
 
-const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLSe-135qXP1VUT801Hy4HEibmNgtLD3WhloW5MM8LI8Vox9MNw/viewform";
+// const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLSe-135qXP1VUT801Hy4HEibmNgtLD3WhloW5MM8LI8Vox9MNw/viewform";
+const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLScVrEjCZSPjP-tW_d178vbdkJ93yNbX5tjQ-I_gocGVT_w3_g/viewform";
 const entry = "entry.642803694";
 
 const mode = {
