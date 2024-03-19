@@ -1,3 +1,7 @@
+* {
+  font-family: "noto sans";
+}
+
 html {
   height: 100%;
 }
@@ -8,6 +12,11 @@ body {
   position: relative;
   height: 100%;
   text-align: center;
+}
+
+textarea {
+  width: calc(100% - 20px);
+  margin-top: 10px;
 }
 
 button, div:has(> input[type="radio"]) {
@@ -51,7 +60,7 @@ button {
 .seperator {
   height: 0;
   width: calc(100% - 10px);
-  margin: 0px 5px;
+  margin: 10px 5px;
   border: 1px solid black;
 }
 
@@ -143,7 +152,7 @@ body[data-section="-1"] > #constant {
   display: none;
 }
 
-body[data-section="0"] > #auton, body[data-section="0"] > #proceed {
+body[data-section="0"] > #auton, body[data-section="0"] > .proceed {
   display: block;
 }
 

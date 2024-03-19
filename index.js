@@ -227,6 +227,7 @@ const actionTeleop = (Action, data) => {
       let success = data.success;
       if (success === "success") {
         show(".harmony");
+        hide("#climbing");
       } else {
         show("#climb_attempt");
       }
@@ -237,6 +238,7 @@ const actionTeleop = (Action, data) => {
       evaluateActions();
       onSection(5);
       hide("#game_over");
+      hide("#climbing");
       break;
   }
 }
@@ -316,6 +318,7 @@ const undoTeleop = Action => {
       console.log(success);
       if (success === "success") {
         hide(".harmony");
+        show("#climbing");
       }
       hide("#climb_attempt");
       
@@ -323,6 +326,7 @@ const undoTeleop = Action => {
 
     case action.done:
       onSection(1);
+      show("#game_over");
       break;
   }
 }

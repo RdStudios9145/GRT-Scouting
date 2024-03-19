@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GRT Scouting</title>
     <link href="style.css" rel="stylesheet">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+    </style>
   </head>
   <body data-section="-1">
     <div id="section">
@@ -61,15 +64,17 @@
       <button id="ground_intake" onclick="Action(mode.teleop, action.intake, { 'id': 0 })">GROUND</button>
       <button id="source_intake" onclick="Action(mode.teleop, action.intake, { 'id': 1 })">SOURCE</button>
 
+      <div class="seperator" style="margin-bottom: 20px"></div>
+
       <div>
         <input type="checkbox" id="defense" name="defense">
         <label for="defense">DEFENSE PRIORITY</label>
       </div>
 
-      <button id="tfail" onclick="Action(mode.teleop, action.failure, { })">FAILURE</button>
-
-      <input type="checkbox" class="harmony" id="harmony" name="harmony">
+      <input type="checkbox" class="harmony" id="harmony" name="harmony" style="margin-top: 10px;">
       <label for="harmony" class="harmony">HARMONY</label>
+
+      <button id="tfail" onclick="Action(mode.teleop, action.failure, { })" style="margin-top: 20px;">TELEOP FAILURE</button>
     </div>
 
 
@@ -92,7 +97,8 @@
       <button class="makemiss" id="miss_ad" onclick="Action(mode.auton, action.shoot, { 'deposit': autonDepositLoc(), 'make': 'miss' })">
         MISS</button><br />
 
-      <button id="proceed_deposit" onclick="Action(mode.auton, action.proceed, { 'ground_intake': true })">Proceed to Teleop Deposit</button>
+      <div class="proceed_deposit seperator"></div>
+      <button class="proceed_deposit" onclick="Action(mode.auton, action.proceed, { 'ground_intake': true })">Proceed to Teleop Deposit</button>
     </div>
 
     <div class="section" id="teleop_deposit">
@@ -116,6 +122,8 @@
         <input type="radio" id="shuttle_td" name="tdeposit" value="shuttle" onclick="Action(mode.teleop, action.shoot, { 'deposit': 'shuttle', 'make': 'make' })">
         <label for="shuttle_td">SHUTTLE</label>
       </div>
+
+      <div class="seperator"></div>
 
       <button class="makemiss" id="make_td" onclick="Action(mode.teleop, action.shoot, { 'deposit': teleopDepositLoc(), 'make': 'make' })">
         MAKE</button> 
@@ -141,16 +149,18 @@
       <button id="fail" onclick="Action(mode.teleop, action.failure, getTeleopFailureData())">Record</button>
     </div>
 
-    <button class="section" id="proceed" onclick="Action(mode.auton, action.proceed, {})">
+    <div class="proceed seperator section"></div>
+    <button class="section proceed" onclick="Action(mode.auton, action.proceed, {})">
       Proceed to Teleop
     </button>
 
     <div id="climbing">
+      <div class="seperator"></div>
       <button id="climb_attempt" onclick="Action(mode.teleop, action.climb, { })">CLIMB ATTEMPT</button>
       <button class="climb" id="climb_success" onclick="Action(mode.teleop, action.climb, { 'success': 'success' })">
-        SUCCESS</button>
+        CLIMB SUCCESS</button>
       <button class="climb" id="climb_fail" onclick="Action(mode.teleop, action.climb, { 'success': 'fail' })">
-        FAIL</button>
+        CLIMB FAIL</button>
     </div>
 
     <button id="game_over" onclick="Action(mode.teleop, action.done, getFinalData())">
@@ -158,6 +168,7 @@
     </button>
 
     <div id="constant">
+      <div class="seperator"></div>
       <button id="undo" onclick="undo()">Undo</button>
       <button id="redo" onclick="redo()">Redo</button>
     </div>
