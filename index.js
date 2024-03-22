@@ -103,8 +103,12 @@ const evaluateAutonAction = (Action) => {
   switch (Action[1]) {
     case action.intake:
       tempData['bessy'] += 1;
+
       if (Action[2].id == "pre") break;
-      data['auton intake'][Action[2].id] += tempData['bessy'];
+
+      if (data['auton intake'][Action[2].id] === 0)
+        data['auton intake'][Action[2].id] += tempData['bessy'];
+
       break;
     
     case action.shoot:
