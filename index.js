@@ -1,6 +1,7 @@
 var data = {};
 var actions = [];
 var redos = [];
+var tempData = {};
 
 // const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLSe-135qXP1VUT801Hy4HEibmNgtLD3WhloW5MM8LI8Vox9MNw/viewform";
 const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLScVrEjCZSPjP-tW_d178vbdkJ93yNbX5tjQ-I_gocGVT_w3_g/viewform";
@@ -61,6 +62,8 @@ const start = () => {
 
   data['additional notes'] = "";
 
+  tempData['bessy'] = 0;
+
   if (data['color'] === "Blue") document.body.setAttribute("data-blue", "true");
 
   onSection(0);
@@ -99,8 +102,9 @@ const getClimbData = () => {
 const evaluateAutonAction = (Action) => {
   switch (Action[1]) {
     case action.intake:
+      tempData['bessy'] += 1;
       if (Action[2].id == "pre") break;
-      data['auton intake'][Action[2].id] += 1;
+      data['auton intake'][Action[2].id] += tempData['bessy'];
       break;
     
     case action.shoot:
