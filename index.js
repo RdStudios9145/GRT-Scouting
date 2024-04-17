@@ -4,7 +4,8 @@ var redos = [];
 var tempData = {};
 
 // const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLSe-135qXP1VUT801Hy4HEibmNgtLD3WhloW5MM8LI8Vox9MNw/viewform";
-const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLScVrEjCZSPjP-tW_d178vbdkJ93yNbX5tjQ-I_gocGVT_w3_g/viewform";
+// const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLScVrEjCZSPjP-tW_d178vbdkJ93yNbX5tjQ-I_gocGVT_w3_g/viewform";
+const sheetlink = "https://docs.google.com/forms/d/e/1FAIpQLSdsAq8GZbaPp9NdBKWS_bUe41F1YDQLSJIo-1HtCiHphTLnkQ/viewform";
 const entry = "entry.642803694";
 
 const mode = {
