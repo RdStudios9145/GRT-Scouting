@@ -62,6 +62,7 @@ const start = () => {
   data['endgame harmony'] = false;
 
   data['additional notes'] = "";
+  data['actions'] = "";
 
   tempData['bessy'] = 0;
 
@@ -150,6 +151,7 @@ const evaluateTeleopAction = (Action) => {
     case action.done:
       data['teleop defense priority'] = Action[2].defense;
       data['endgame harmony'] = Action[2].harmony;
+      data['actions'] = JSON.stringify(actions);
       break;
 
     case action.proceed:
