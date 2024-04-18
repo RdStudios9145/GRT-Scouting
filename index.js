@@ -436,7 +436,11 @@ const stringifyData = () => {
 
 const submit = () => {
   data['additional notes'] = document.getElementById("final_comments").value;
+  let formData = stringifyData();
 
-  document.getElementById("submit").href = `${sheetlink}?${entry}=${stringifyData()}`;
+  document.getElementById("submit").href = `${sheetlink}?${entry}=${formData}`;
   For("#submit > button", e => { e.innerText = "Submit Again"; e.style.background = "red" });
+
+  localStorage.setItem(`${data['team #']} ${data['match #']} ${Math.floor(Math.random() * 1000000)}`, formData);
+  window.location.reload();
 }
